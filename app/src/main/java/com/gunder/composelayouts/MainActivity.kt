@@ -7,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -23,9 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeLayoutsTheme {
-                androidx.compose.material.Surface {
-                    MessageCard(Message("Android", "Jetpack Compose"))
-                }
+                Conversation(SampleData.conversationSample)
             }
         }
     }
@@ -72,6 +72,23 @@ fun PreviewMessageCard() {
             MessageCard(msg = Message("Guna",
                 "hello theres! i'm using compose to build android apps!"))
         }
+    }
+}
+
+@Composable
+fun Conversation(messages: List<Message>) {
+    LazyColumn {
+        items(messages) { message ->
+            MessageCard(message)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewConversation() {
+    ComposeLayoutsTheme {
+        Conversation(SampleData.conversationSample)
     }
 }
 
