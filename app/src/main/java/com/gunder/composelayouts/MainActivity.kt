@@ -13,12 +13,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.gunder.composelayouts.ui.theme.ComposeLayoutsTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(Message("Android", "Jetpack Compose"))
+            ComposeLayoutsTheme {
+                androidx.compose.material.Surface {
+                    MessageCard(Message("Android", "Jetpack Compose"))
+                }
+            }
         }
     }
 }
@@ -44,6 +49,11 @@ fun MessageCard(msg: Message) {
 @Preview
 @Composable
 fun PreviewMessageCard() {
-    MessageCard(msg = Message("Guna", "hello theres! i'm using compose to build android apps!"))
+    ComposeLayoutsTheme {
+        androidx.compose.material.Surface {
+            MessageCard(msg = Message("Guna",
+                "hello theres! i'm using compose to build android apps!"))
+        }
+    }
 }
 
